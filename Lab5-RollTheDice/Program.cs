@@ -10,106 +10,66 @@ namespace Lab5_RollTheDice
             //Create an application that simulates dice rolling
 
             //WELCOME
-                Console.WriteLine("Welcome to the Casino!");
+                 Console.WriteLine("Welcome to the Casino!");
+
+            //PLAY OR END GAME?
+                bool EndGame = false;  //start with EndGame set to false in order to play the game
+
                 Console.WriteLine("Would you like to roll the dice? Y/N ");
-
-            //PLAY OR END GAME?
-                bool EndGame = false;  //start with EndGame set to false; aka play the game
                 string RollDice = Console.ReadLine();
-                if (RollDice == "N")
-                    {
-                        EndGame = true;  //set EndGame to true in order to exit
-                        Console.WriteLine("Thanks for playing!");
-                
-                        // **** how to exit? it continues after this line
-                    }
 
 
+            //DON'T ROLL THE DICE - END GAME
+            if (RollDice == "N")
+            {
+                EndGame = true;  //set EndGame to true in order to exit
+                Console.WriteLine("Thanks for playing! Goodbye!");
+            }
 
-            //INPUT - define variables for user input, methods, interim calculations, results
-                Console.WriteLine("How many sides are there one each die?");
-                int NumberSides = int.Parse(Console.ReadLine());
-                Console.WriteLine("Ok let's play now!");
-                
-                
-            //WHILE - execute as long as condition is true
-                EndGame = false;                //set to true for initial execution and to repeat
-                while (EndGame==false)          //do this as long as ContinueProgram is set to true 
-                
-                    {
-                //PROCESS - RANDOM NUMBER GENERATOR -- the while will loop back to here
-                //for, if/else, call methods, cwl the output, define what makes EndGame true
+            //YES, ROLL THE DICE - PLAY THE GAME
+            else
+            {
+                EndGame = false;          //set to true for initial execution and to repeat
 
-                
-                        ///THIS code doesnt work; repeats numbers
-                        //Random random = new Random();
-                        //int randomNumber = random.Next(0, 10);
-                        //Console.WriteLine(random);
+                while (EndGame == false)   //do this as long as ContinueProgram is set to true 
+                {
+                    //INPUT - define variables for user input, methods, interim calculations, results  //the while will loop back to here
+                    Console.WriteLine("How many sides are there on each die?");  //this sets NumberSides as the parameters for random numbers 
+                    int NumberSides = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ok, let's play now!");
 
-                        ///THIS code doesnt work; repeats numbers
-                        //Random rnd = new Random();
-                        //int dice1 = rnd.Next(1, 13); // creates a number between 1 and 12
-                        //int dice2 = rnd.Next(1, 7);   // creates a number between 1 and 6
+                    //PROCESS - random number generator 
 
+                    Random RandomDice1 = new Random();
+                    Random RandomDice2 = new Random();
+                    int RandomNumber1 = RandomDice1.Next(2, NumberSides);
+                    int RandomNumber2 = RandomDice2.Next(2, NumberSides);
 
-                        //DOESNT WORK
-                        //Function to get random number private static readonly 
-                        //Random getrandom = new Random();
-                        //public static int GetRandomNumber(int min, int max) { lock(getrandom ) {
+                    //OUTPUT
 
-                        // synchronize 
-                        //        return getrandom.Next(min, max); } 
+                    Console.WriteLine("You rolled a RandomNumber " + RandomNumber1 + " and a " + RandomNumber2 + "!");
 
 
+                    //PLAY OR END GAME?
+                    Console.WriteLine("Continue? Y/N");
+                    string Continue = Console.ReadLine();
 
-                Random RandomDice1 = new Random();
-
-                int Goal = RandomDice1.Next(1, 8);
-                string Input;
-
-                int Guess = 0;
-                while (Guess != Goal)
-                    {
-                    Console.WriteLine("Give me a number between 1 and 8:");
-                    Input = Console.ReadLine();
-                    Guess = Convert.ToInt32(Input);
-
-                }
-                //OUTPUT
-                Console.WriteLine("Congrats! You rolled " + Guess + "!");
-                
-
-                    }
-
-            //PLAY OR END GAME?
-            Console.WriteLine("Continue? Y/N");
-                string Continue = Console.ReadLine();
-
-                    if (Continue == "Y")
-                    {
-                        EndGame = false;  
-                        Console.WriteLine("Ok let's play again!");
-                    }
-
-                    else
+                    if (Continue == "N")   //if continue = N, End the game
                     {
                         EndGame = true;  //set EndGame to true in order to end the loop and exit
                         Console.WriteLine("Thanks for playing!");
                     }
- 
+                    else                   //if continue = Y, continue/play again
+                    {
+                        EndGame = false;
+                        Console.WriteLine("Ok let's play again!");
+                        Console.Clear();
+                    }
+
+                }
+            }
+            
         }
 
     }
-
-   // class Random  //insert random number generator
-    //{
-
-
-    //    public int RollDice()  //METHOD TO GENERATE RANDOM NUMBERS
-    //    {
-    //        int dice1, dice2;
-    //        Console.WriteLine(" ");
-    //    }
-
-    //}
 }
